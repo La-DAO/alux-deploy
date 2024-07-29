@@ -95,10 +95,10 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
   )}`,
   [eArbitrumNetwork.goerliNitro]: `https://goerli-rollup.arbitrum.io/rpc`,
   [eBaseNetwork.baseGoerli]: `https://goerli.base.org`,
-  // [eBaseNetwork.base]: `https://base-mainnet.g.alchemy.com/v2/${getAlchemyKey(
-  //   eBaseNetwork.base
-  // )}`,
-  [eBaseNetwork.base]: `https://virtual.base.rpc.tenderly.co/07da7af4-86c5-43b1-be40-266ea995ef10`,
+  [eBaseNetwork.base]: `https://base-mainnet.g.alchemy.com/v2/${getAlchemyKey(
+    eBaseNetwork.base
+  )}`,
+  // [eBaseNetwork.base]: `https://virtual.base.rpc.tenderly.co/a94e380c-47b0-4391-a681-f9eb1fe415d7`,
 };
 
 export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {

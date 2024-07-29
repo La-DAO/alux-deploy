@@ -1,0 +1,16 @@
+{
+  "PoolAddressesProviderRegistry": 1722221704,
+  "LogicLibraries": 1722221767,
+  "Treasury": 1722221802,
+  "PoolAddressesProvider:Alux:aave-v3-core@1.19.3": 1722221838,
+  "PoolConfigurator": 1722221880,
+  "ACLManager:Alux:aave-v3-core@1.19.3": 1722221914,
+  "Oracles:Alux:aave-v3-core@1.19.3": 1722221921,
+  "InitOracles:Alux:aave-v3-core@1.19.3": 1722221927,
+  "PoolInitalization:Alux:aave-v3-core@1.19.3": 1722221963,
+  "Incentives:Alux:aave-v3-periphery@2.5.2": 1722222006,
+  "TokenImplementations:Alux:aave-v3-core@1.19.3": 1722222063,
+  "ReservesInit:Alux:aave-v3-core@1.19.3": 1722222119,
+  "PeripheryInit:Alux:aave-v3-periphery@2.5.2": 1722222119,
+  "ParaswapAdapters:Alux:aave-v3-periphery@2.5.2": 1722222170
+}

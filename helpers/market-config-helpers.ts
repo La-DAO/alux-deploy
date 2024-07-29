@@ -43,6 +43,7 @@ declare var hre: HardhatRuntimeEnvironment;
 export enum ConfigNames {
   Commons = "Commons",
   Aave = "Aave",
+  Alux = "Alux",
   Test = "Test",
   Harmony = "Harmony",
   Avalanche = "Avalanche",

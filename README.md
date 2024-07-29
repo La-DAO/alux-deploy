@@ -1,131 +1,61 @@
-# Aave V3 Deployments
+# Alux Deployments
 
-[![npm (scoped)](https://img.shields.io/npm/v/@aave/deploy-v3)](https://www.npmjs.com/package/@aave/deploy-v3)
+## Base L2
 
-This Node.js repository contains the configuration and deployment scripts for the Aave V3 protocol core and periphery contracts. The repository makes use of `hardhat` and `hardhat-deploy` tools to facilitate the deployment of Aave V3 protocol.
-
-## Requirements
-
-- Node.js >= 16
-- Alchemy key
-  - If you use a custom RPC node, you can change the default RPC provider URL at [./helpers/hardhat-config-helpers.ts:25](./helpers/hardhat-config-helpers.ts).
-- Etherscan API key _(Optional)_
-
-## Getting Started
-
-1. Install Node.JS dependencies:
-
-   ```
-   npm i
-   ```
-
-2. Compile contracts before running any other command, to generate Typechain TS typings:
-
-   ```
-   npm run compile
-   ```
-
-## How to deploy Aave V3 in testnet network
-
-To deploy Aave V3 in a Testnet network, copy the `.env.example` into a `.env` file, and fill the environment variables `MNEMONIC`, and `ALCHEMY_KEY`.
-
-```
-cp .env.example .env
-```
-
-Edit the `.env` file to fill the environment variables `MNEMONIC`, `ALCHEMY_KEY` and `MARKET_NAME`. You can check all possible pool configurations in this [file](https://github.com/aave/aave-v3-deploy/blob/09e91b80aff219da80f35a9fc55dafc5d698b574/helpers/market-config-helpers.ts#L95).
-
-```
-nano .env
-```
-
-Run the deployments scripts and specify which network & aave market configs you wish to deploy.
-
-```
-HARDHAT_NETWORK=goerli npx hardhat deploy
-```
-
-## How to deploy Aave V3 in fork network
-
-You can use the environment variable `FORK` with the network name to deploy into a fork.
-
-```
-FORK=main MARKET_NAME=Aave npx hardhat deploy
-```
-
-## How to integrate in your Hardhat project
-
-You can install the `@aave/deploy-v3` package in your Hardhat project to be able to import deployments with `hardhat-deploy` and build on top of Aave in local or testnet network.
-
-To make it work, you must install the following packages in your project:
-
-```
-npm i --save-dev @aave/deploy-v3 @aave/core-v3 @aave/periphery-v3
-```
-
-Then, proceed to load the deploy scripts adding the `externals` field in your Hardhat config file at `hardhat.config.js|ts`.
-
-```
-# Content of hardhat.config.ts file
-
-export default hardhatConfig: HardhatUserConfig = {
-   {...},
-   external: {
-    contracts: [
-      {
-        artifacts: 'node_modules/@aave/deploy-v3/artifacts',
-        deploy: 'node_modules/@aave/deploy-v3/dist/deploy',
-      },
-    ],
-  },
-}
-```
-
-After all is configured, you can run `npx hardhat deploy` to run the scripts or you can also run it programmatically in your tests using fixtures:
-
-```
-import {getPoolAddressesProvider} from '@aave/deploy-v3';
-
-describe('Tests', () => {
-   before(async () => {
-      // Set the MARKET_NAME env var
-      process.env.MARKET_NAME = "Aave"
-
-      // Deploy Aave V3 contracts before running tests
-      await hre.deployments.fixture(['market', 'periphery-post']);`
-   })
-
-   it('Get Pool address from AddressesProvider', async () => {
-      const addressesProvider = await getPoolAddressesProvider();
-
-      const poolAddress = await addressesProvider.getPool();
-
-      console.log('Pool', poolAddress);
-   })
-})
-
-```
-
-## How to verify your contract deployments
-
-```
-npx hardhat --network XYZ etherscan-verify --api-key YZX
-```
-
-## Project Structure
-
-| Path                  | Description                                                                                                                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| deploy/               | Main deployment scripts dir location                                                                                            |
-| ├─ 00-core/           | Core deployment, only needed to run once per network.                                                                           |
-| ├─ 01-periphery_pre/  | Periphery contracts deployment, only need to run once per network.                                                              |
-| ├─ 02-market/         | Market deployment scripts, depends of Core and Periphery deployment.                                                            |
-| ├─ 03-periphery_post/ | Periphery contracts deployment after market is deployed.                                                                        |
-| deployments/          | Artifacts location of the deployments, contains the addresses, the abi, solidity input metadata and the constructor parameters. |
-| markets/              | Directory to configure Aave markets                                                                                             |
-| tasks/                | Hardhat tasks to setup and review market configs                                                                                |
-| helpers/              | Utility helpers to manage configs and deployments                                                                               |
-
-## License
-
-Please be aware that [Aave V3](https://github.com/aave/aave-v3-core) is under [BSUL](https://github.com/aave/aave-v3-core/blob/master/LICENSE.md) license as of 27 January 2023 or date specified at v3-license-date.aave.eth. The Licensor hereby grants you the right to copy, modify, create derivative works, redistribute, and make non-production use of the Licensed Work. Any exceptions to this license may be specified by Aave governance. This repository containing the deployment scripts for the Aave V3 smart contracts can only be used for local or testing purposes. If you wish to deploy to a production environment you can reach out to Aave Governance [here](https://governance.aave.com/).
+| Contract Name                           | address                                      |
+| --------------------------------------- | -------------------------------------------- |
+| PoolAddressesProviderRegistry           | '0xBb6c438BC37b4F5A7dE17aE8B49BC5AA0a7c5E73' |
+| SupplyLogic                             | '0x4548Efa0b65C27eddFB6F444AaC984F416130b08' |
+| BorrowLogic                             | '0x7caDA4705Fc764F0303568Bf14f83bb7672CAD0B' |
+| LiquidationLogic                        | '0x3b7b4EB1186B889Df55e9184738468CCE1a6703f' |
+| EModeLogic                              | '0xE49204706a961b860A97306288343f9BF0747eB7' |
+| BridgeLogic                             | '0xeEa7F3b3506d91e332255834daC56A3C835D927E' |
+| ConfiguratorLogic                       | '0x6dF9F4a2409431ebf415567951De9685b834ef1A' |
+| FlashLoanLogic                          | '0x1D5446d71400BD77156a1156B8E261b6E09DE1d9' |
+| PoolLogic                               | '0xCdDC1644C673E4610Fc5566C834A026aD49cDd2c' |
+| TreasuryProxy                           | '0x8F6C52454686089D09851A71f1E90D548E040003' |
+| Treasury-Controller                     | '0xDd519e3DC2Bd2A54bA76630e741348564DDdff43' |
+| Treasury-Implementation                 | '0xfF2e55D62B26168A9e555CfA0bd3e3743B0877d1' |
+| PoolAddressesProvider-Alux              | '0xf7F56d8a155aF8A726dfDa80790c7a4fbf21CDf8' |
+| PoolDataProvider-Alux                   | '0x12f471aBC19678940d1CE9bc95B7Bc3BF0af1C55' |
+| CalldataLogic                           | '0x2591E77E3591542E9079eD580f9dd60B083Ad362' |
+| L2Pool-Implementation                   | '0x3daa7BD2a8968569fD2dD7de826E0fB52a55acFA' |
+| PoolConfigurator-Implementation         | '0x2581899fFddEeAa57485586fbcD60a4e56a556B8' |
+| ReservesSetupHelper                     | '0x71B1b8984d6410d1a2BaC6f0E876b7631a12f173' |
+| ACLManager-Alux                         | '0x2424fd0bbA5d36242D3FF13db910F18E761c3F50' |
+| AaveOracle-Alux                         | '0xf20e1784E87Fcf02CFd91c49E6cF6A69B5e50F0F' |
+| Pool-Proxy-Alux                         | '0x7a8AE9bB9080670e2BAFb6Df3EA62968F4Ad8a88' |
+| PoolConfigurator-Proxy-Alux             | '0x9A355d99C32Df996e6e02AA85C92620870C76663' |
+| L2Encoder                               | '0x20F5A33B282976f28631EDBB87B5f96c5810a1f3' |
+| EmissionManager                         | '0x0aae3f9A5822c28ca05a234Ee2cf5E80282C54cF' |
+| IncentivesV2-Implementation             | '0xF48a484FcB547f06B27fC2DB627e1F95ABf67362' |
+| IncentivesProxy                         | '0xBAa2c44e500b28dF5aE76b658e348a93BA004BD7' |
+| AToken-Alux                             | '0xECEB25F1E2C44AF9C00Da1f2CFbb29D6c143bC48' |
+| DelegationAwareAToken-Alux              | '0x5F88340e18823a2cE3831b62897ceCdeEB9e325e' |
+| StableDebtToken-Alux                    | '0xf4B85784E89d220D9Fa98af700eb8F78058e9a25' |
+| VariableDebtToken-Alux                  | '0xF02E177cdfb77Fd02063d53F4FB8d9877F10d311' |
+| ReserveStrategy-rateStrategyVolatileOne | '0x8288ABbaE596c4aBf91694e2432bE48285a2a704' |
+| ReserveStrategy-rateStrategyStableOne   | '0x346ad2a2354D819cb410FA033868Ec9d3f78Dc34' |
+| ReserveStrategy-rateStrategyStableTwo   | '0xF0A5b91966eb4544f277e50735F08e9fFf421812' |
+| USDC-AToken-Alux                        | '0xcc8942bBd69BB2a5389668943F07539A20aDEd2b' |
+| USDC-VariableDebtToken-Alux             | '0x67DAbC98051560A90A6F99Dbb19CaFd1E06412f1' |
+| USDC-StableDebtToken-Alux               | '0x256a0ff5234CD1B580AFE0eDC916De3Dac15Bba1' |
+| WETH-AToken-Alux                        | '0x002c619F0390830e14EFea5acEC6D9c7093DA54B' |
+| WETH-VariableDebtToken-Alux             | '0x9fB164D0DD25659224e55Bc781E62F71DAF257D5' |
+| WETH-StableDebtToken-Alux               | '0xeF7c6E3ce6367ebdb417Ce03ad9Ad61edBF161c8' |
+| CBETH-AToken-Alux                       | '0x14546f849E837D392b00273Ef29302E8508837bc' |
+| CBETH-VariableDebtToken-Alux            | '0xD654022798b862B8ec3a165e0e530351A5fa46c5' |
+| CBETH-StableDebtToken-Alux              | '0xD795DEF50fc23F161106BFd3ff975B68128ad61f' |
+| XOC-AToken-Alux                         | '0x6D6E9fC9c6082dBf9985541C046AC49F3886224f' |
+| XOC-VariableDebtToken-Alux              | '0xF1A82428499A440b7365b619744D8E9A4f79B454' |
+| XOC-StableDebtToken-Alux                | '0xed74B1E095EAb79E97aA647F2511510fbFE245b6' |
+| WrappedTokenGatewayV3                   | '0x754Fa3f459268f9E10c106824D62768E9F6Be09F' |
+| WalletBalanceProvider                   | '0x3Af0E2AAbBa5bCF84351BfaF74DBD2e35e7beA59' |
+| UiIncentiveDataProviderV3               | '0xC6bc27811B9f199EDF7F6c929538376CeF91d921' |
+| UiPoolDataProviderV3                    | '0xFFBc43957EB8A1a34Cc992Adb18D36766bC145df' |
+| ParaSwapLiquiditySwapAdapter            | '0x8d4298797053CEd1B1916018E2cA805cACE4BA90' |
+| ParaSwapRepayAdapter                    | '0xAB6D048B876B2B25F174Bb5B6c44A2e03f7B9b24' |
+| ParaSwapWithdrawSwapAdapter             | '0x5F2c06a1381D7a890163258584f522A4D68e9b4b' |
+| UiIncentiveDataProvider                 | '0xC6bc27811B9f199EDF7F6c929538376CeF91d921' |
+| UiPoolDataProviderV3 price aggregator   | '0x7e860098F58bBFC8648a4311b374B1D669a2bc6B' |
+| UiPoolDataProviderV3                    | '0x829D7aBA8B49f4BD5510cd874b94dDc69f238Bfc' |
