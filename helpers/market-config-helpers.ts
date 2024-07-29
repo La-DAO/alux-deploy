@@ -13,6 +13,7 @@ import {
   AssetType,
 } from "./types";
 import AaveMarket from "../markets/aave";
+import AluxConfig from "../markets/alux";
 import EthereumV3Config from "../markets/ethereum";
 import AaveTestMarket from "../markets/test";
 import HarmonyMarket from "../markets/harmony";
@@ -101,6 +102,8 @@ export const loadPoolConfig = (configName: ConfigNames): PoolConfiguration => {
   switch (configName) {
     case ConfigNames.Aave:
       return AaveMarket;
+    case ConfigNames.Alux:
+      return AluxConfig;
     case ConfigNames.Test:
       return AaveTestMarket;
     case ConfigNames.Harmony:

@@ -1,4 +1,7 @@
-import { rateStrategyStableOne, rateStrategyVolatileOne } from "./../aave/rateStrategies";
+import {
+  rateStrategyStableOne,
+  rateStrategyVolatileOne,
+} from "./../aave/rateStrategies";
 import { eContractid, IReserveParams } from "../../helpers/types";
 
 export const strategyWMATIC: IReserveParams = {
@@ -134,7 +137,7 @@ export const strategyEURS: IReserveParams = {
   liquidationBonus: "10750",
   liquidationProtocolFee: "1000",
   borrowingEnabled: true,
-  stableBorrowRateEnabled: true,
+  stableBorrowRateEnabled: false,
   flashLoanEnabled: true,
   reserveDecimals: "2",
   aTokenImpl: eContractid.AToken,
@@ -188,7 +191,7 @@ export const strategyUSDC: IReserveParams = {
   liquidationBonus: "10400",
   liquidationProtocolFee: "1000",
   borrowingEnabled: true,
-  stableBorrowRateEnabled: true,
+  stableBorrowRateEnabled: false,
   flashLoanEnabled: true,
   reserveDecimals: "6",
   aTokenImpl: eContractid.AToken,
