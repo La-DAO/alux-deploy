@@ -49,6 +49,9 @@
 | XOC-AToken-Alux                         | '0x6D6E9fC9c6082dBf9985541C046AC49F3886224f' |
 | XOC-VariableDebtToken-Alux              | '0xF1A82428499A440b7365b619744D8E9A4f79B454' |
 | XOC-StableDebtToken-Alux                | '0xed74B1E095EAb79E97aA647F2511510fbFE245b6' |
+| MXNe-AToken-Alux                        | '0xDcA10908969b4113044dD773e02e3F7A1AdaEc73' |
+| MXNe-VariableDebtToken-Alux             | '0x3353de104762409EE69960C45E6a0e92b17f8C90' |
+| MXNe-StableDebtToken-Alux               | '0x646277768e909cC6Ce174df70894AE31f7b6e978' |
 | WrappedTokenGatewayV3                   | '0x754Fa3f459268f9E10c106824D62768E9F6Be09F' |
 | WalletBalanceProvider                   | '0x3Af0E2AAbBa5bCF84351BfaF74DBD2e35e7beA59' |
 | UiIncentiveDataProviderV3               | '0xC6bc27811B9f199EDF7F6c929538376CeF91d921' |
